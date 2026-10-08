@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interclasse EENSA – Chaveamento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bloqueio" id="bloqueio" hidden role="dialog" aria-modal="true" aria-labelledby="titulo-bloqueio">
+    <form class="caixa-senha" id="form-senha">
+      <h2 id="titulo-bloqueio">Painel de modificação</h2>
+      <p>Digite a senha para editar os dados.</p>
+      <label for="campo-senha">Senha</label>
+      <input type="password" id="campo-senha" autocomplete="current-password" required>
+      <button type="submit">Entrar</button>
+      <button type="button" class="secundario" id="btn-cancelar">Cancelar</button>
+      <p class="erro" id="erro-senha" role="alert"></p>
+    </form>
+  </div>
+
+  <header class="cabecalho">
+    <p class="orgao">Chaveamento</p>
+    <h1>Interclasse EENSA</h1>
+    <dl class="dados">
+      <div>
+        <dt>Início</dt>
+        <dd>08:00</dd>
+      </div>
+      <div>
+        <dt>Local</dt>
+        <dd>Quadra do campo</dd>
+      </div>
+    </dl>
+    <div class="barra-acoes">
+      <button type="button" class="botao-painel" id="btn-painel">Painel de modificação</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="secao" aria-labelledby="titulo-modalidades">
+      <h2 id="titulo-modalidades">Modalidades</h2>
+      <div class="abas" role="tablist" aria-label="Modalidades">
+        <button type="button" role="tab" class="aba" data-modalidade="futebol" aria-selected="true">Futebol</button>
+        <button type="button" role="tab" class="aba" data-modalidade="volei" aria-selected="false">Vôlei</button>
+      </div>
+    </section>
+
+    <section class="destaques" aria-label="Destaques da modalidade">
+      <article class="destaque">
+        <h2 id="rotulo-destaque-pontos">Artilheiro</h2>
+        <p class="nome" id="destaque-pontos-nome">—</p>
+        <p class="valor"><span id="destaque-pontos-valor">0</span> <span id="unidade-pontos">gols</span></p>
+      </article>
+
+      <article class="destaque">
+        <h2>Mais assistências</h2>
+        <p class="nome" id="destaque-assist-nome">—</p>
+        <p class="valor"><span id="destaque-assist-valor">0</span> assistências</p>
+      </article>
+    </section>
+
+    <section class="tabelas" id="area-tabelas">
+
+      <article class="bloco">
+        <div class="bloco-topo">
+          <div>
+            <h2>Ensino Fundamental II</h2>
+            <p class="periodo">6º ao 8º ano</p>
+          </div>
+          <button type="button" class="adicionar so-edicao" data-grupo="fund2">+ Adicionar jogador</button>
+        </div>
+        <div class="tabela-wrap">
+          <table aria-label="Jogadores do Ensino Fundamental II">
+            <thead>
+              <tr>
+                <th scope="col">Jogador</th>
+                <th scope="col">Turma</th>
+                <th scope="col" class="cabecalho-pontos">Gols</th>
+                <th scope="col">Assistências</th>
+                <th scope="col" class="so-edicao"><span class="sr-only">Ações</span></th>
+              </tr>
+            </thead>
+            <tbody data-grupo="fund2"></tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="bloco">
+        <div class="bloco-topo">
+          <div>
+            <h2>9º Ano e Ensino Médio</h2>
+            <p class="periodo">9º ano ao 3º ano</p>
+          </div>
+          <button type="button" class="adicionar so-edicao" data-grupo="medio">+ Adicionar jogador</button>
+        </div>
+        <div class="tabela-wrap">
+          <table aria-label="Jogadores do 9º ano e Ensino Médio">
+            <thead>
+              <tr>
+                <th scope="col">Jogador</th>
+                <th scope="col">Turma</th>
+                <th scope="col" class="cabecalho-pontos">Gols</th>
+                <th scope="col">Assistências</th>
+                <th scope="col" class="so-edicao"><span class="sr-only">Ações</span></th>
+              </tr>
+            </thead>
+            <tbody data-grupo="medio"></tbody>
+          </table>
+        </div>
+      </article>
+
+    </section>
+
+    <p class="dica" id="dica">Esta página é somente leitura. Use o painel de modificação para editar os dados.</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

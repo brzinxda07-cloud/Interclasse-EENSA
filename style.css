@@ -1,0 +1,535 @@
+:root {
+  --preto: #0c0a09;
+  --painel: #17130f;
+  --papel: #f2ede4;
+  --rosa: #ff3d8b;
+  --ciano: #22d3ee;
+  --limao: #b5ff3b;
+  --laranja: #ff8a1f;
+  --linha: #3a332c;
+  --muted: #b9b0a3;
+  --marcador: "Permanent Marker", "Impact", cursive;
+  --corpo: "Archivo", "Arial", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Parede de tijolos feita com SVG repetido */
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 40px 16px 64px;
+  color: var(--papel);
+  font-family: var(--corpo);
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #241a15;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Crect width='120' height='60' fill='%233b2018'/%3E%3Crect x='10' y='4' width='40' height='22' fill='%23452519' opacity='.6'/%3E%3Crect x='65' y='34' width='20' height='22' fill='%2347271b' opacity='.6'/%3E%3Crect x='5' y='34' width='22' height='20' fill='%2334190f' opacity='.6'/%3E%3Crect x='35' y='4' width='20' height='22' fill='%2337200f' opacity='.5'/%3E%3Cpath d='M0 30H120M0 0H120M0 0V30M60 0V30M30 30V60M90 30V60' stroke='%23140c09' stroke-width='3'/%3E%3C/svg%3E");
+  background-size: 120px 60px;
+}
+
+/* Respingos de tinta spray */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 8% 14%, rgba(255, 61, 139, 0.3) 0, rgba(255, 61, 139, 0.3) 40px, transparent 130px),
+    radial-gradient(circle at 92% 22%, rgba(34, 211, 238, 0.24) 0, rgba(34, 211, 238, 0.24) 60px, transparent 170px),
+    radial-gradient(circle at 80% 88%, rgba(181, 255, 59, 0.2) 0, rgba(181, 255, 59, 0.2) 50px, transparent 150px),
+    radial-gradient(circle at 15% 92%, rgba(255, 138, 31, 0.22) 0, rgba(255, 138, 31, 0.22) 40px, transparent 120px);
+}
+
+/* Escurece as bordas, como luz de rua à noite */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.cabecalho,
+main {
+  position: relative;
+  z-index: 1;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Cabeçalho */
+
+.cabecalho {
+  max-width: 980px;
+  margin: 0 auto 36px;
+}
+
+.orgao {
+  display: inline-block;
+  margin: 0 0 14px;
+  padding: 4px 12px;
+  background: var(--limao);
+  color: var(--preto);
+  font-weight: 800;
+  transform: rotate(-2deg);
+  box-shadow: 4px 4px 0 var(--preto);
+}
+
+.cabecalho h1 {
+  margin: 0;
+  font-family: var(--marcador);
+  font-size: clamp(44px, 9vw, 92px);
+  font-weight: 400;
+  line-height: 1;
+  color: #fff;
+  text-shadow:
+    3px 3px 0 var(--rosa),
+    -3px 2px 0 var(--ciano),
+    6px 7px 0 var(--preto);
+  transform: rotate(-1.5deg);
+  transform-origin: left;
+  overflow-wrap: anywhere;
+}
+
+.dados {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 0;
+}
+
+.dados div {
+  padding: 8px 14px;
+  background: var(--papel);
+  color: var(--preto);
+  box-shadow: 4px 4px 0 var(--preto);
+  transform: rotate(1deg);
+}
+
+.dados div:nth-child(2) {
+  transform: rotate(-1deg);
+}
+
+.dados dt {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.dados dd {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.barra-acoes {
+  margin-top: 22px;
+}
+
+/* Layout */
+
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  gap: 28px;
+}
+
+/* Cartões tipo adesivo, com sombra firme */
+
+.secao,
+.bloco,
+.destaque,
+.caixa-senha {
+  background: var(--painel);
+  border: 3px solid var(--papel);
+  border-radius: 2px;
+  box-shadow: 8px 8px 0 var(--preto);
+}
+
+.secao,
+.bloco {
+  padding: 22px 24px;
+}
+
+.secao h2,
+.bloco h2 {
+  margin: 0 0 14px;
+  font-family: var(--marcador);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--limao);
+  text-shadow: 2px 2px 0 var(--preto);
+}
+
+/* Modalidades (abas) */
+
+.abas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.aba {
+  padding: 8px 18px;
+  background: var(--preto);
+  color: var(--papel);
+  border: 3px solid var(--papel);
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: 4px 4px 0 var(--preto);
+}
+
+.aba:hover {
+  background: var(--papel);
+  color: var(--preto);
+}
+
+.aba[aria-selected="true"] {
+  background: var(--ciano);
+  color: var(--preto);
+  border-color: var(--preto);
+  box-shadow: 4px 4px 0 var(--papel);
+}
+
+/* Destaques */
+
+.destaques {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.destaque {
+  --cor: var(--rosa);
+  padding: 20px 22px;
+  border-left: 10px solid var(--cor);
+}
+
+.destaque:nth-child(2) {
+  --cor: var(--ciano);
+}
+
+.destaque h2 {
+  margin: 0;
+  font-family: var(--marcador);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--cor);
+}
+
+.destaque .nome {
+  margin: 10px 0 4px;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+
+.destaque .valor {
+  margin: 0;
+  color: var(--muted);
+}
+
+.destaque .valor span:first-child {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--papel);
+}
+
+/* Tabelas */
+
+.tabelas {
+  display: grid;
+  gap: 26px;
+}
+
+.bloco-topo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.periodo {
+  margin: 2px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.tabela-wrap {
+  overflow-x: auto;
+  border: 2px solid var(--linha);
+  background: #0c0a09;
+}
+
+table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 10px 12px;
+  text-align: left;
+  background: #000;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ciano);
+  border-bottom: 2px solid var(--papel);
+}
+
+td {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: middle;
+  color: var(--papel);
+  border-bottom: 1px dashed var(--linha);
+}
+
+th:nth-child(3),
+th:nth-child(4),
+td:nth-child(3),
+td:nth-child(4) {
+  text-align: center;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+td.vazio {
+  text-align: center;
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* Campos */
+
+input,
+select {
+  font: inherit;
+  color: var(--papel);
+  background: #0a0807;
+  border: 2px solid #5a5148;
+  border-radius: 2px;
+  padding: 7px 10px;
+}
+
+.campo-nome {
+  width: 100%;
+  min-width: 180px;
+}
+
+select {
+  min-width: 170px;
+}
+
+input:focus-visible,
+select:focus-visible,
+button:focus-visible,
+.aba:focus-visible {
+  outline: 3px solid var(--limao);
+  outline-offset: 2px;
+}
+
+/* Botões */
+
+button {
+  font: inherit;
+  font-weight: 700;
+  color: var(--papel);
+  background: var(--preto);
+  border: 2px solid var(--papel);
+  border-radius: 2px;
+  padding: 8px 14px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--preto);
+}
+
+button:hover {
+  background: var(--papel);
+  color: var(--preto);
+}
+
+.adicionar {
+  background: var(--limao);
+  color: var(--preto);
+  border-color: var(--preto);
+}
+
+.adicionar:hover {
+  background: var(--papel);
+}
+
+.contador {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contador button {
+  min-width: 36px;
+  padding: 2px 10px;
+  font-size: 18px;
+  font-weight: 800;
+  box-shadow: none;
+}
+
+.num {
+  min-width: 34px;
+  font-size: 22px;
+  font-weight: 800;
+  text-align: center;
+  color: var(--limao);
+  font-variant-numeric: tabular-nums;
+}
+
+.remover {
+  padding: 4px 8px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: var(--muted);
+}
+
+.remover:hover {
+  background: none;
+  color: var(--rosa);
+}
+
+/* Nota de rodapé */
+
+.dica {
+  margin: 0;
+  padding: 10px 14px;
+  background: var(--preto);
+  border-left: 6px solid var(--laranja);
+  font-size: 15px;
+  color: var(--papel);
+}
+
+body.modo-edicao .dica {
+  border-left-color: var(--limao);
+}
+
+/* Controles de edição aparecem só no painel */
+
+body:not(.modo-edicao) .so-edicao {
+  display: none;
+}
+
+.botao-painel {
+  padding: 10px 18px;
+  background: var(--rosa);
+  color: var(--preto);
+  border: 3px solid var(--preto);
+  font-size: 16px;
+  font-weight: 800;
+  box-shadow: 4px 4px 0 var(--ciano);
+}
+
+.botao-painel:hover {
+  background: var(--limao);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ciano);
+}
+
+/* Janela de senha */
+
+.bloqueio {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.bloqueio[hidden] {
+  display: none;
+}
+
+.caixa-senha {
+  width: 100%;
+  max-width: 380px;
+  padding: 26px;
+  box-shadow: 10px 10px 0 var(--ciano);
+}
+
+.caixa-senha h2 {
+  margin: 0 0 8px;
+  font-family: var(--marcador);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--rosa);
+  text-shadow: 2px 2px 0 var(--preto);
+}
+
+.caixa-senha p {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+.caixa-senha label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 800;
+}
+
+.caixa-senha input {
+  width: 100%;
+}
+
+.caixa-senha button {
+  width: 100%;
+  margin-top: 16px;
+  background: var(--rosa);
+  color: var(--preto);
+  border-color: var(--preto);
+  font-size: 16px;
+  box-shadow: 4px 4px 0 var(--preto);
+}
+
+.caixa-senha button:hover {
+  background: var(--limao);
+}
+
+.caixa-senha .secundario {
+  margin-top: 10px;
+  background: var(--preto);
+  color: var(--papel);
+  border-color: var(--papel);
+  box-shadow: none;
+}
+
+.caixa-senha .secundario:hover {
+  background: var(--papel);
+  color: var(--preto);
+}
+
+.erro {
+  min-height: 1.5em;
+  margin: 12px 0 0 !important;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--laranja) !important;
+}
