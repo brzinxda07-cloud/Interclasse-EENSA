@@ -410,3 +410,8 @@ if (!carregarDados()) {
 }
 
 renderizar();
+
+// Link vindo de outra página (index.html#painel) abre direto a janela de senha
+if (window.location.hash === "#painel") {
+  abrirBloqueio();
+}
