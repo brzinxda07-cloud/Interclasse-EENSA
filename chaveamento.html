@@ -1,1 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chaveamento – Interclasse EENSA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <header class="cabecalho">
+    <p class="orgao">Interclasse EENSA</p>
+    <h1>Chaveamento</h1>
+    <dl class="dados">
+      <div>
+        <dt>Início</dt>
+        <dd>08:00</dd>
+      </div>
+      <div>
+        <dt>Local</dt>
+        <dd>Quadra do campo</dd>
+      </div>
+    </dl>
+    <p class="lema">Que vença o melhor!</p>
+    <nav class="barra-acoes" aria-label="Páginas">
+      <a class="botao-link" href="index.html">Página principal</a>
+      <a class="botao-painel" href="index.html#painel">Painel de modificação</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="chave" aria-label="Chaveamento do torneio">
+
+      <div class="fase">
+        <h2>Primeira fase</h2>
+        <article class="partida" style="--cor: var(--ciano)">
+          <p class="partida-rotulo">Jogo 1</p>
+          <p class="time" data-slot="j1a">2º ANO</p>
+          <p class="x">x</p>
+          <p class="time" data-slot="j1b">9º ANO 1</p>
+        </article>
+        <article class="partida" style="--cor: var(--limao)">
+          <p class="partida-rotulo">Jogo 2</p>
+          <p class="time" data-slot="j2a">3º ANO</p>
+          <p class="x">x</p>
+          <p class="time" data-slot="j2b">1º ANO 1</p>
+        </article>
+        <article class="partida" style="--cor: var(--rosa)">
+          <p class="partida-rotulo">Jogo 3</p>
+          <p class="time" data-slot="j3a">9º ANO 2</p>
+          <p class="x">x</p>
+          <p class="time" data-slot="j3b">1º ANO 2</p>
+        </article>
+      </div>
+
+      <div class="fase">
+        <h2>Semifinal</h2>
+        <article class="partida" style="--cor: var(--laranja)">
+          <p class="partida-rotulo">Semifinal 1</p>
+          <p class="time" data-slot="s1a">Vencedor do jogo 1</p>
+          <p class="x">x</p>
+          <p class="time" data-slot="s1b">Vencedor do jogo 2</p>
+        </article>
+        <article class="partida solo" style="--cor: var(--laranja)">
+          <p class="partida-rotulo">Semifinal 2</p>
+          <p class="time" data-slot="s2a">Vencedor do jogo 3</p>
+        </article>
+      </div>
+
+      <div class="fase">
+        <h2>Final</h2>
+        <article class="partida" style="--cor: var(--ciano)">
+          <p class="partida-rotulo">Final</p>
+          <p class="time" data-slot="fa">Vencedor da semifinal 1</p>
+          <p class="x">x</p>
+          <p class="time" data-slot="fb">Vencedor da semifinal 2</p>
+        </article>
+      </div>
+
+      <section class="campeao" aria-labelledby="titulo-campeao">
+        <h2 id="titulo-campeao">Campeão</h2>
+        <p data-campeao>Vencedor da final</p>
+      </section>
+
+    </section>
+
+    <section class="eliminados-caixa" aria-labelledby="titulo-eliminados">
+      <h3 id="titulo-eliminados">Eliminados</h3>
+      <ul data-lista-eliminados></ul>
+    </section>
+  </main>
+
+  <script src="chave.js"></script>
+</body>
+</html>
